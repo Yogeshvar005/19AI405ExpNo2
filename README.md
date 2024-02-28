@@ -1,6 +1,5 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: Saravanan N</h3>
-<h3>Register Number/Staff Id: TSML006</h3>
+
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -46,13 +45,43 @@ Visit node 3
 Now, the Stack becomes empty, which means we have visited all the nodes, and our DFS traversal ends.
 
 <h3>Algorithm:</h3>
-<B><ol>
- <li>Construct a Graph with Nodes and Edges</li>
- <li>Depth First Search Uses Stack and Recursion</li>
- <li>Insert a START node to the STACK</li>
- <li>Find its Successors Or neighbors and Check whether the node is visited or not</li>
- <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
-</ol></B>
+
+ 1. Construct a Graph with Nodes and Edges   
+ 2. Depth First Search Uses Stack and Recursion     
+ 3. Insert a START node to the STACK     
+ 4. Find its Successors Or neighbors and Check whether the node is visited or not                          
+ 5. If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.                          
+
+
+
+
+## program:
+```
+ NAME : Yogeshvar M
+ REG NO : 212222230180
+```
+```python
+from collections import defaultdict
+def dfs(graph,start,visited,path):
+    path.append(start)
+    visited[start]=True
+    for neighbour in graph[start]:
+        if visited[neighbour]==False:
+           dfs(graph,neighbour,visited,path)
+           visited[neighbour]=True
+    return path
+graph=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split())
+    graph[u].append(v)
+    graph[v].append(u)
+start=input()
+visited=defaultdict(bool)
+path=[]
+traversedpath=dfs(graph,start,visited,path)
+print(traversedpath)
+```
 
 <hr>
 <h3>Sample Input</h3>
@@ -74,6 +103,30 @@ F H <BR>
 
 <hr>
 
+## program:
+```python
+from collections import defaultdict
+def dfs(g,s,vi,p):
+    p.append(s)
+    vi[s]=True
+    for ne in g[s]:
+        if vi[ne]==False:
+             dfs(g,ne,vi,p)
+             vi[ne]=True
+    return p
+g=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split())
+    g[u].append(v)
+    g[v].append(u)
+st=input()
+vi=defaultdict(bool)
+p=[]
+tdp=dfs(g,st,vi,p)
+print(tdp)
+```
+
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -92,4 +145,3 @@ F H <BR>
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
-
